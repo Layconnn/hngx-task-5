@@ -5,6 +5,7 @@ const ScreenRecorder: React.FC = () => {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [showRecording, setShowRecording] = useState<boolean>(false);
   const [cameraEnabled, setCameraEnabled] = useState<boolean>(false);
+  const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const cameraVideoRef = useRef<HTMLVideoElement | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -25,6 +26,7 @@ const ScreenRecorder: React.FC = () => {
     try {
       const constraints: MediaStreamConstraints = {
         video: true,
+        audio: microphoneEnabled,
       };
 
       const userMediaStream = await navigator.mediaDevices.getDisplayMedia(
@@ -216,7 +218,7 @@ const ScreenRecorder: React.FC = () => {
         </div>
       )}
       <div className="w-[60rem] flex items-center flex-col p-[1.5rem] shadow-3xl">
-        <div className="flex items-center w-[18.8rem] justify-between mb-1rem">
+        <div className="flex items-center justify-between mb-1rem">
           <div className="flex gap-[0.5rem] items-center">
             <img src="./v.svg" alt="help-logo" />
             <p className="font-[Sora] font-bold text-[#120B48]">HelpMeOut</p>
@@ -261,7 +263,7 @@ const ScreenRecorder: React.FC = () => {
             />
           </div>
         </div>
-        {/* <div className="p-[0.75rem] pl-[1rem] max-w-[15.75rem] w-full mb-[1.5rem] border-2 border-primary-600 rounded-[0.75rem]">
+        <div className="p-[0.75rem] pl-[1rem] max-w-[15.75rem] w-full mb-[1.5rem] border-2 border-primary-600 rounded-[0.75rem]">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-[0.5rem]">
               <img src="./audio.svg" alt="" />
@@ -275,7 +277,7 @@ const ScreenRecorder: React.FC = () => {
               onClick={() => setMicrophoneEnabled(!microphoneEnabled)}
             />
           </div>
-        </div> */}
+        </div>
         <div
           onClick={startRecording}
           className="flex justify-center items-center rounded-[0.75rem] bg-[#120B48] hover:bg-[#928FAB] mb-1rem p-1rem text-[#FAFDFF] text-1rem font-['Work_Sans'] font-medium cursor-pointer"
