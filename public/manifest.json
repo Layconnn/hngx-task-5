@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "HelpMeOut",
+  "version": "1.0.0",
+  "permissions": [
+    "desktopCapture",
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_title": "HelpMeOut",
+    "default_popup": "/index.html",
+    "default_icon": {
+      "16": "./v2.png",
+      "32": "./v3.png",
+      "48": "./v1.png",
+      "64": "./v0.png",
+      "96": "./v1.png",
+      "128": "./v1.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "./v2.png",
+    "32": "./v3.png",
+    "48": "./v1.png",
+    "64": "./v0.png",
+    "96": "./v1.png",
+    "128": "./v1.png"
+  }
+}
